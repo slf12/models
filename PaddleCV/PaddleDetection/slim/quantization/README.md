@@ -185,7 +185,9 @@ python ../eval.py \
 python freeze.py \
     --model_path ${checkpoint_path}/${epoch_id}/eval_model/ \
     --weight_quant_type ${weight_quant_type} \
-    --save_path ${any path you want}
+    --save_path ${any path you want} \
+    -c ../../configs/yolov3_mobilenet_v1_voc.yml \
+    -d "../../dataset/voc"
 ```
 
 ### 最终评估模型
@@ -223,6 +225,8 @@ FP32模型可使用PaddleLite进行加载预测，可参见教程[Paddle-Lite如
 
 
 ## 示例结果
+
+>当前release的结果并非超参调优后的最好结果，仅做示例参考，后续我们会优化当前结果。
 
 ### MobileNetV1
 

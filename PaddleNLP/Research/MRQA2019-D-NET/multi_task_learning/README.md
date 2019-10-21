@@ -17,7 +17,7 @@ In the MRQA 2019 shared task, We use [PALM](https://github.com/PaddlePaddle/PALM
 - Python >= 2.7
 - cuda >= 9.0
 - cudnn >= 7.0
-- PaddlePaddle 1.5.2 (Please refer to the Installation Guide [Installation Guide](http://www.paddlepaddle.org/#quick-start))
+- PaddlePaddle 1.6 (Please refer to the Installation Guide [Installation Guide](http://www.paddlepaddle.org/#quick-start))
 - PALM v1.0
 
 ### Install PALM
@@ -43,8 +43,13 @@ The downloaded data will be saved into `data/mrqa` (combined MRQA training and d
 In our MTL experiments, we use BERT as our shared encoder. The parameters are initialized from the Whole Word Masking BERT (BERTwwm), further fine-tuned on the SQuAD 2.0 task with synthetic generated question answering corpora. The model parameters in Tensorflow format can be downloaded [here](https://worksheets.codalab.org/worksheets/0x3852e60a51d2444680606556d404c657). The following command can be used to convert the parameters to the format that is readable for PaddlePaddle.
 
 ```
-cd scripts && python convert_model_params.py  --init_tf_checkpoint tf_model --fluid_params_dir paddle_model && cd ..
+1、cd scripts
+2、# download cased_model_01.tar.gz from link
+3、mkdir cased_model_01 && mv cased_model_01.tar.gz cased_model_01 && cd cased_model_01 && tar -xvf cased_model_01.tar.gz && cd ..
+4、python convert_model_params.py --init_tf_checkpoint cased_model_01/model.ckpt --fluid_params_dir params
+5、mkdir squad2_model && mv cased_model_01/vocab.txt cased_model_01/bert_config.json params squad2_model 
 ```
+
 Alternatively, user can directly **download the parameters that we have converted**: 
 
 ```
